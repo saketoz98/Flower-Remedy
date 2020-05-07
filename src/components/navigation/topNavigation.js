@@ -5,9 +5,6 @@ import {
   MDBNavbarNav,
   MDBNavbarToggler,
   MDBCollapse,
-  MDBNavItem,
-  MDBNavLink,
-  MDBIcon
 } from 'mdbreact';
 
 class TopNavigation extends Component {

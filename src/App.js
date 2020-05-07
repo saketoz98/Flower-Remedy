@@ -13,6 +13,9 @@ function App() {
       <main id='content' className='p-5'>
         <Switch>
           <Route path='/' exact component={Dashboard} />
+          <Route path='/login' exact component={Dashboard} />
+          <Route path='/register' exact component={Dashboard} />
+
         </Switch>
       </main>
     </div>

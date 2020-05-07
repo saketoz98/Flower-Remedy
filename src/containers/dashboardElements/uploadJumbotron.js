@@ -1,11 +1,14 @@
 import { MDBJumbotron } from 'mdbreact';
 import React, { useState } from 'react';
-import { storage } from '../../firebase/firebase';
+import { storage, db } from '../../firebase/firebase';
 import Button from '../../components/utilities/DashboardButton';
+import XLSX from 'xlsx';
 
 const UploadJumbotron = ({ title }) => {
-  const [file, setfile] = useState('');
+
+  const [file, setfile] = useState(null);
   const [error, setError] = useState('');
+  const [data, setdata] = useState([]);
 
   const handlefile = e => {
     const uploadedFile = e.target.files[0];
@@ -17,37 +20,53 @@ const UploadJumbotron = ({ title }) => {
         'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' ||
       type === 'application/vnd.ms-excel.sheet.macroEnabled.12'
     ) {
-      console.log('file set');
-      setfile(imageFile => uploadedFile);
+      console.log(uploadedFile);
+      setfile(uploadedFile);
+      console.log(typeof(file));
+
     } else {
       console.log('error');
       setError('File Format Invalid. Only Excel files are allowed!!');
     }
   };
 
-  const handleUploadReq = e => {
+  const handleUploadReq =  (e) => {
     e.preventDefault();
+    const reader = new FileReader();
+    const rABS = !!reader.readAsBinaryString;
+    console.log(rABS);
     console.log('start of upload');
-    // async magic goes here...
-    if (file === '') {
-      console.error(`not an image, the image file is a ${typeof file}`);
-    }
-    const uploadTask = storage.ref(`/images/${file.name}`).put(file);
-    //initiates the firebase side uploading
-    uploadTask.on(
-      'state_changed',
-      snapShot => {
-        //takes a snap shot of the process as it is happening
-        console.log(snapShot);
-      },
-      err => {
-        //catches the errors
-        console.log(err);
-      }
-    );
+    reader.onload =  (e) => {
+      /* Parse data */
+      console.log("On load fired")
+      const bstr = e.target.result;
+      const wb = XLSX.read(bstr, { type: rABS ? 'binary' : 'array', bookVBA : true });
+      /* Get first worksheet */
+      const wsname = wb.SheetNames[0];
+      const ws = wb.Sheets[wsname];
+      /* Convert array of arrays */
+      const data = XLSX.utils.sheet_to_json(ws);
+      /* Update state */
+      setdata(data);
+      console.log(JSON.stringify(data, null, 2));
+      console.log(typeof(data));
+      console.log(data[0]);
+      db.collection("sheets").add({data : data}).then(()=>{
+        console.log("Added");
+      }).catch((e)=>{
+        console.log(e);
+      });
+
+    };
+    if (rABS) {
+      reader.readAsBinaryString(file);
+    } else {
+      reader.readAsArrayBuffer(file);
+    };
+
+
   };
 
-  const handleDownloadReq = () => {};
 
   return (
     <React.Fragment>
@@ -63,16 +82,16 @@ const UploadJumbotron = ({ title }) => {
           content out within the larger MDBContainer.
         </p>
 
-        <form onSubmit={handleUploadReq} encType='multipart/form-data'>
           <input type='file' onChange={handlefile} />
+          
           <Button
             color='blue'
             size='lg'
-            disabled={error || file === '' ? true : false}
+            disabled={error || file === null ? true : false}
+            onClick = {handleUploadReq}
           >
             Upload File
           </Button>
-        </form>
       </MDBJumbotron>
     </React.Fragment>
   );
