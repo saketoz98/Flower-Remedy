@@ -20,14 +20,14 @@ const UserHistoryProvider = (props) => {
         createdAt: Date.now(),
       })
       .then((res) => {
-        console.log("Added");
+        // console.log("Added");
         setmodal(!modal);
       });
   };
 
   const getHistoryofUser = (id) => {
-    console.log(id);
-    console.log(userHistory);
+    // console.log(id);
+    // console.log(userHistory);
     setuserHistory([]);
     setloading(true);
     db.collection("history")
@@ -46,7 +46,7 @@ const UserHistoryProvider = (props) => {
           setloading(false);
 
         }else{
-            console.log("Inside else");
+            // console.log("Inside else");
             setloading(false);
         }
 

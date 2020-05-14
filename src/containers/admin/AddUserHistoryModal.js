@@ -26,7 +26,7 @@ const AddUserHistoryModal = (props) => {
     // event.persist();
     const med = event.target.value;
     setvalue(med);
-    console.log("Value set");
+    // console.log("Value set");
   };
 
   const handleAmount = (event) => {
@@ -39,7 +39,7 @@ const AddUserHistoryModal = (props) => {
       ...prevMeds,
       { medicineName: value, amount: amount },
     ]);
-    console.log(SelectedMeds);
+    // console.log(SelectedMeds);
     setvalue("Choose your Medicine");
   };
 

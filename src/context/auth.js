@@ -15,10 +15,11 @@ const AuthProvider = (props) => {
 
   const login =  ()=>{
     auth.signInWithPopup(provider).then(function(result) {
-        console.log(result);
+        // console.log(result);
         result.user.getIdTokenResult().then(res=>{
           if(res.claims.admin){
-            console.log(res.claims.admin);
+            // console.log(res.claims.admin);
+            // console.log(process.env.REACT_APP_API_KEY);
             setIsAdmin(res.claims.admin);
           }
           
@@ -36,12 +37,12 @@ const AuthProvider = (props) => {
   }
   const logout = ()=>{
     auth.signOut().then(function() {
-        console.log("Logout done");
-        console.log(uid);
+        // console.log("Logout done");
+        // console.log(uid);
         setUid(null);
         setIsAdmin(false);
       }).catch(function(error) {
-        console.log("Error");
+        // console.log("Error");
       });
   }
   return (

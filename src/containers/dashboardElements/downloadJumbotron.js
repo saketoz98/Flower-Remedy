@@ -18,11 +18,11 @@ const Jumbotron = ({ title }) => {
           responseType: 'blob', // important
           headers: { Accept: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' }
         }).then(response => {
-          console.log(response)
+          // console.log(response)
           const downloadUrl = window.URL.createObjectURL(new Blob([response.data]));
           setUrl(downloadUrl);
-          console.log('Downloaded');
-          console.log(url);
+          // console.log('Downloaded');
+          // console.log(url);
         });
       })
       .catch(function(error) {

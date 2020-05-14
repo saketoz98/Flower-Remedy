@@ -8,11 +8,11 @@ const MakeAdmin = (props) => {
 
     const makeAdmin =  (e)=>{
         e.preventDefault();
-        console.log(input);
+        // console.log(input);
         const addAdminRole = functions.httpsCallable("addAdminRole");
         addAdminRole({email:input}).then((result)=>{
-            console.log("Function Called");
-            console.log(result);
+            // console.log("Function Called");
+            // console.log(result);
         }).catch(err=>{
             console.log(err);
         })

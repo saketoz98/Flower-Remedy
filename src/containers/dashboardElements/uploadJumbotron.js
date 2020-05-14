@@ -13,7 +13,7 @@ const UploadJumbotron = ({ title }) => {
 
   const handlefile = (e) => {
     const uploadedFile = e.target.files[0];
-    console.log(uploadedFile.type);
+    // console.log(uploadedFile.type);
     const type = uploadedFile.type;
     if (
       type === "application/vnd.ms-excel" ||
@@ -21,9 +21,9 @@ const UploadJumbotron = ({ title }) => {
         "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" ||
       type === "application/vnd.ms-excel.sheet.macroEnabled.12"
     ) {
-      console.log(uploadedFile.lastModifiedDate.getDate());
+      // console.log(uploadedFile.lastModifiedDate.getDate());
       setfile(uploadedFile);
-      console.log(uploadedFile);
+      // console.log(uploadedFile);
     } else {
       console.log("error");
       setError("File Format Invalid. Only Excel files are allowed!!");
@@ -43,11 +43,11 @@ const UploadJumbotron = ({ title }) => {
     
     const reader = new FileReader();
     const rABS = !!reader.readAsBinaryString;
-    console.log(rABS);
-    console.log("start of upload");
+    // console.log(rABS);
+    // console.log("start of upload");
     reader.onload = (e) => {
       /* Parse data */
-      console.log("On load fired");
+      // console.log("On load fired");
       const bstr = e.target.result;
       const wb = XLSX.read(bstr, {
         type: rABS ? "binary" : "array",
@@ -60,12 +60,12 @@ const UploadJumbotron = ({ title }) => {
       const data = XLSX.utils.sheet_to_json(ws);
       /* Update state */
       setdata(data);
-      console.log(uid);
+      // console.log(uid);
       db.collection("sheets")
         .doc(uid)
         .set({ data: data, date: Date.now(), user: userData })
         .then(() => {
-          console.log("Added");
+          // console.log("Added");
           setfile(null);
         })
         .catch((e) => {
@@ -78,7 +78,7 @@ const UploadJumbotron = ({ title }) => {
       reader.readAsArrayBuffer(file);
     }
   }else{
-    console.log("No Permission");
+    // console.log("No Permission");
     alert("You need to log in before performing upload!!");
   }
   };

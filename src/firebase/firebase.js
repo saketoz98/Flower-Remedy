@@ -6,13 +6,13 @@ import 'firebase/auth';
 import 'firebase/functions';
 
 var firebaseConfig = {
-  apiKey: 'AIzaSyB1_3Jjzs_vDo1T-OvSn0GnX5NC_oMTnIk',
-  authDomain: 'flowerremedy-87049.firebaseapp.com',
-  databaseURL: 'https://flowerremedy-87049.firebaseio.com',
-  projectId: 'flowerremedy-87049',
+  apiKey: process.env.REACT_APP_API_KEY,
+  authDomain: process.env.REACT_APP_AUTHDOMAIN,
+  databaseURL: process.env.REACT_APP_DB_URL,
+  projectId: process.env.REACT_APP_PROJECTID,
   storageBucket: 'flowerremedy-87049.appspot.com',
   messagingSenderId: '454861493115',
-  appId: '1:454861493115:web:fd5e3779faa2407fb523de',
+  appId: process.env.REACT_APP_APP_ID,
   measurementId: 'G-WX0WP5RH2G'
 };
 
