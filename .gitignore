@@ -48,3 +48,5 @@ yarn-error.log*
 
 Questionaire.xlsx
 cors.json
+
+./functions/node_modules

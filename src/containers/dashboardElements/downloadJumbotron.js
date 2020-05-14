@@ -40,13 +40,12 @@ const Jumbotron = ({ title }) => {
       <MDBJumbotron>
         <h1 className='h1-responsive'>Download File</h1>
         <p className='lead'>
-          This is a simple hero unit, a simple jumbotron-style component for
-          calling extra attention to featured content or information.
+          Questionaire to assess the problems of the patient is attached below. Download the file and fill the details.
         </p>
         <hr className='my-2' />
         <p>
-          It uses utility classNamees for typography and spacing to space
-          content out within the larger MDBContainer.
+          Do not change the order of questions. 
+          Fill the answers of the questions in Y/N format and upload the file using upload link.
         </p>
 
         <Button color='blue' size='lg' onClick={handleDownloadReq}>
