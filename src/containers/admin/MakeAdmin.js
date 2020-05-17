@@ -12,7 +12,7 @@ const MakeAdmin = (props) => {
         const addAdminRole = functions.httpsCallable("addAdminRole");
         addAdminRole({email:input}).then((result)=>{
             // console.log("Function Called");
-            // console.log(result);
+            console.log(result);
         }).catch(err=>{
             console.log(err);
         })

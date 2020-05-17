@@ -33,7 +33,7 @@ const AdminDashboard = (props) => {
           <MDBTableBody>
             {users.map((user, index) => {
               return (
-                  <tr>
+                  <tr key={index}>
                     <td>{index}</td>
                     <td>{user.user.name}</td>
                     <td>{user.user.email}</td>

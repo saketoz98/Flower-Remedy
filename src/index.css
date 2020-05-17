@@ -32,6 +32,10 @@ main {
   color: #2196f3 !important;
 }
 
+.topNavbar {
+  display: none;
+}
+
 .sidebar-fixed {
   left: 0;
   top: 0;
@@ -164,6 +168,14 @@ main {
 .breadcrumb {
   margin: 0;
 }
+.activeClassTopNav{
+  z-index: 5 ;
+  color: #fff;
+  border-color: #DCDCDC;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+  border-radius: 5px !important;
+  background-color: #DCDCDC !important;
+}
 
 .activeClass .list-group-item {
   z-index: 5;
@@ -179,6 +191,20 @@ main {
 }
 
 @media (max-width: 1199.98px) {
+  .title{
+    display: none;
+  }
+  .NavItem{
+    margin-top: 10px;
+  }
+
+  .topNavbar{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
   .sidebar-fixed {
     display: none;
   }
@@ -203,6 +229,17 @@ main {
 }
 
 @media (max-width: 576px) {
+  .topNavbar{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin : auto 10px;
+  }
+  .NavItem{
+    width: 100%;
+    margin : auto 10px
+  }
   .card.cascading-admin-card {
     margin-top: 2.5rem;
   }

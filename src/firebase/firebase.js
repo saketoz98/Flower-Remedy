@@ -4,6 +4,7 @@ import 'firebase/analytics';
 import 'firebase/firestore';
 import 'firebase/auth';
 import 'firebase/functions';
+// import 'firebase/messaging';
 
 var firebaseConfig = {
   apiKey: process.env.REACT_APP_API_KEY,
@@ -25,5 +26,19 @@ const db = firebase.firestore();
 const provider = new firebase.auth.GoogleAuthProvider();
 const auth = firebase.auth();
 const functions = firebase.functions();
+
+// let messaging;
+// if(firebase.messaging.isSupported()) {
+//   messaging = firebase.messaging();
+// }
+
+// if ('serviceWorker' in navigator) {
+//   window.addEventListener('load', async () => {
+//       const registration = await navigator.serviceWorker.register('/firebase-messaging-sw.js', {
+//           updateViaCache: 'none'
+//       });
+//       messaging.useServiceWorker(registration);
+//   });
+// }
 
 export { storage, db, provider, auth, functions, firebase as default };
